@@ -78,6 +78,8 @@ app.delete("/api/notes/:id", async (req, res) => {
         console.error("Error deleting note:", error);
         res.status(500).json({ error: "Internal Server Error" });
     }
+});
+
 // PUT update note by ID
 app.put("/api/notes/:id", async (req, res) => {
     try {
