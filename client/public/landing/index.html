@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudyMate — AI-Powered Study Notes & Claude MCP Server</title>
+    <meta name="description" content="Organize your study notes, generate instant AI summaries, and interact with Claude via our custom MCP server.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Background Glow Blobs -->
+    <div class="glow-blob blob-1"></div>
+    <div class="glow-blob blob-2"></div>
+
+    <!-- Header Navigation -->
+    <header class="header">
+        <div class="logo">
+            <span class="logo-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                    <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </span>
+            <span class="logo-text">StudyMate</span>
+        </div>
+        <nav class="nav-links">
+            <a href="#features">Features</a>
+            <a href="#faq">FAQ</a>
+            <a href="http://localhost:5173" class="btn btn-secondary">Open App</a>
+        </nav>
+        <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle Theme">
+            <!-- Moon Icon -->
+            <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+            <!-- Sun Icon -->
+            <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="5"></circle>
+                <line x1="12" y1="1" x2="12" y2="3"></line>
+                <line x1="12" y1="21" x2="12" y2="23"></line>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                <line x1="1" y1="12" x2="3" y2="12"></line>
+                <line x1="21" y1="12" x2="23" y2="12"></line>
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+        </button>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="badge">StudyMate v1.0 is Live</div>
+            <h1 class="hero-title">Elevate Your Studying with <span class="gradient-text">AI Power</span></h1>
+            <p class="hero-subtitle">Create, organize, and summarize your study notes. <span id="typewriter-text" class="typewriter"></span><span class="cursor">|</span></p>
+            <div class="hero-actions">
+                <a href="http://localhost:5173" class="btn btn-primary btn-glow">Open App</a>
+                <a href="#features" class="btn btn-outline">Explore Features</a>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="features-section">
+            <h2 class="section-title">Designed for Smarter Learning</h2>
+            <p class="section-subtitle">Powerful features that help you study faster, remember longer, and integrate with AI tools.</p>
+            
+            <div class="features-grid">
+                <!-- Feature Card 1 -->
+                <div class="feature-card">
+                    <div class="feature-icon bg-indigo">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 20h9"></path>
+                            <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+                        </svg>
+                    </div>
+                    <h3>Smart Notes Manager</h3>
+                    <p>Organize all your study materials, lecture summaries, and personal notes in a sleek, customizable workspace designed for students.</p>
+                </div>
+
+                <!-- Feature Card 2 -->
+                <div class="feature-card">
+                    <div class="feature-icon bg-violet">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                            <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                            <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                        </svg>
+                    </div>
+                    <h3>AI Summary Generator</h3>
+                    <p>Leverage the Gemini API to automatically generate study guides, summaries, and key takeaways from any note in just one click.</p>
+                </div>
+
+                <!-- Feature Card 3 -->
+                <div class="feature-card">
+                    <div class="feature-icon bg-cyan">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                            <line x1="8" y1="21" x2="16" y2="21"></line>
+                            <line x1="12" y1="17" x2="12" y2="21"></line>
+                        </svg>
+                    </div>
+                    <h3>Claude MCP Server</h3>
+                    <p>Connect Claude Desktop directly to your study workspace. Query, search, and edit your notes directly through simple natural language.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq" class="faq-section">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <p class="section-subtitle">Quick answers to common questions about StudyMate.</p>
+            
+            <div class="faq-accordion">
+                <!-- Accordion Item 1 -->
+                <div class="faq-item">
+                    <button class="faq-trigger">
+                        <span>How does the AI summary feature work?</span>
+                        <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </button>
+                    <div class="faq-content">
+                        <div class="faq-inner">
+                            <p>StudyMate uses Google's powerful Gemini model to analyze your note content. When you request a summary, it identifies the key concepts, vocabulary, and takeaways, formatting them into structured study sheets.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Accordion Item 2 -->
+                <div class="faq-item">
+                    <button class="faq-trigger">
+                        <span>What is an MCP server and how do I use it?</span>
+                        <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </button>
+                    <div class="faq-content">
+                        <div class="faq-inner">
+                            <p>MCP stands for Model Context Protocol. By adding StudyMate's MCP server configuration to Claude Desktop, Claude can directly read, edit, and query your notes, acting as a personal tutor that knows your course materials inside out.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Accordion Item 3 -->
+                <div class="faq-item">
+                    <button class="faq-trigger">
+                        <span>Is my note data private?</span>
+                        <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </button>
+                    <div class="faq-content">
+                        <div class="faq-inner">
+                            <p>Absolutely. Your study notes are stored securely in your MongoDB database instance. Only you and authorized AI services (like Gemini via your local environment variables or Claude via your local MCP setup) can access them.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-logo">
+            <span class="logo-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                    <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </span>
+            <span>StudyMate</span>
+        </div>
+        <p class="copyright">&copy; 2026 StudyMate. Built with HTML, CSS, and Vanilla JavaScript.</p>
+    </footer>
+
+    <!-- Script -->
+    <script src="script.js"></script>
+</body>
+</html>
