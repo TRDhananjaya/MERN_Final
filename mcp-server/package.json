@@ -1,0 +1,17 @@
+{
+  "name": "studymate-mcp-server",
+  "version": "1.0.0",
+  "description": "MCP server for StudyMate — list and create notes via Claude Desktop or MCP Inspector",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.29.0",
+    "zod": "^4.4.3"
+  }
+}
