@@ -7,22 +7,22 @@
     --font-body: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 
     /* Theme Variables (Default Dark Mode) */
-    --bg-primary: #080c14;
-    --bg-secondary: #0d1527;
-    --card-bg: rgba(17, 25, 40, 0.65);
+    --bg-primary: #030712;
+    --bg-secondary: #0b1329;
+    --card-bg: rgba(17, 24, 39, 0.7);
     --card-border: rgba(255, 255, 255, 0.08);
-    --text-primary: #f8fafc;
-    --text-secondary: #94a3b8;
-    --text-muted: #64748b;
+    --text-primary: #ffffff;
+    --text-secondary: #9ca3af;
+    --text-muted: #6b7280;
     --border-color: rgba(255, 255, 255, 0.1);
     
-    /* Brand Accents - Teal & Coral Theme */
-    --accent-indigo: #0ea5e9; /* Teal/Cyan base */
-    --accent-violet: #f97316; /* Coral base */
-    --accent-cyan: #14b8a6;
+    /* Brand Accents - Pure Blue Theme */
+    --accent-indigo: #3b82f6; /* Electric Blue */
+    --accent-violet: #1d4ed8; /* Cobalt Blue */
+    --accent-cyan: #60a5fa; /* Sky Blue */
     
-    --accent-gradient: linear-gradient(135deg, #0ea5e9 0%, #14b8a6 50%, #f97316 100%);
-    --accent-glow: rgba(14, 165, 233, 0.4);
+    --accent-gradient: linear-gradient(135deg, #1d4ed8 0%, #3b82f6 50%, #93c5fd 100%);
+    --accent-glow: rgba(59, 130, 246, 0.35);
     
     /* Layout */
     --max-width: 1200px;
@@ -147,6 +147,13 @@ body.light-theme .header {
     font-weight: 700;
     font-size: 1.35rem;
     letter-spacing: -0.02em;
+}
+
+.logo-img {
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    object-fit: cover;
 }
 
 .logo-icon {
@@ -296,9 +303,9 @@ body.light-theme .sun-icon {
 }
 
 .badge {
-    background-color: rgba(99, 102, 241, 0.1);
+    background-color: rgba(59, 130, 246, 0.1);
     color: var(--accent-indigo);
-    border: 1px solid rgba(99, 102, 241, 0.2);
+    border: 1px solid rgba(59, 130, 246, 0.2);
     font-size: 0.85rem;
     font-weight: 600;
     padding: 0.4rem 1rem;
@@ -335,12 +342,12 @@ body.light-theme .sun-icon {
 
 /* Typewriter & Cursor Styles */
 .typewriter {
-    color: var(--accent-violet);
+    color: var(--accent-indigo);
     font-weight: 600;
 }
 
 .cursor {
-    color: var(--accent-violet);
+    color: var(--accent-indigo);
     animation: cursor-blink 0.8s infinite steps(2);
     margin-left: 2px;
 }
@@ -415,7 +422,7 @@ body.light-theme .sun-icon {
 
 .feature-card:hover {
     transform: translateY(-8px);
-    border-color: rgba(99, 102, 241, 0.25);
+    border-color: rgba(59, 130, 246, 0.25);
     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
 }
 
@@ -434,9 +441,9 @@ body.light-theme .sun-icon {
     color: #ffffff;
 }
 
-.bg-indigo { background: linear-gradient(135deg, #4f46e5, #6366f1); }
-.bg-violet { background: linear-gradient(135deg, #7c3aed, #8b5cf6); }
-.bg-cyan { background: linear-gradient(135deg, #0891b2, #06b6d4); }
+.bg-indigo { background: linear-gradient(135deg, #1d4ed8, #3b82f6); }
+.bg-violet { background: linear-gradient(135deg, #1e3a8a, #2563eb); }
+.bg-cyan { background: linear-gradient(135deg, #0369a1, #0284c7); }
 
 .feature-card h3 {
     font-family: var(--font-heading);
@@ -477,7 +484,7 @@ body.light-theme .sun-icon {
 }
 
 .faq-item:hover {
-    border-color: rgba(99, 102, 241, 0.2);
+    border-color: rgba(59, 130, 246, 0.2);
 }
 
 .faq-trigger {
@@ -521,7 +528,7 @@ body.light-theme .sun-icon {
 
 /* FAQ Active Styles */
 .faq-item.active {
-    border-color: rgba(99, 102, 241, 0.3);
+    border-color: rgba(59, 130, 246, 0.3);
 }
 
 .faq-item.active .chevron {
