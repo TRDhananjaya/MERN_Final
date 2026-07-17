@@ -78,6 +78,101 @@ app.delete("/api/notes/:id", async (req, res) => {
         console.error("Error deleting note:", error);
         res.status(500).json({ error: "Internal Server Error" });
     }
+// PUT update note by ID
+app.put("/api/notes/:id", async (req, res) => {
+    try {
+        const { title, subject, content } = req.body;
+        
+        if (!title || !title.trim() || !content || !content.trim()) {
+            return res.status(400).json({ error: "Title and Content are required fields." });
+        }
+
+        const updatedNote = await Note.findByIdAndUpdate(
+            req.params.id,
+            {
+                title: title.trim(),
+                subject: subject ? subject.trim() : "General",
+                content: content.trim()
+            },
+            { new: true, runValidators: true }
+        );
+
+        if (!updatedNote) {
+            return res.status(404).json({ error: "Note not found." });
+        }
+        res.json(updatedNote);
+    } catch (error) {
+        console.error("Error updating note:", error);
+        res.status(500).json({ error: "Internal Server Error" });
+    }
+});
+
+// POST generate AI quiz (3 MCQs) for a note
+app.post("/api/notes/:id/quiz", async (req, res) => {
+    try {
+        const note = await Note.findById(req.params.id);
+        if (!note) {
+            return res.status(404).json({ error: "Note not found." });
+        }
+
+        if (!apiKey) {
+            throw new Error("GEMINI_API_KEY is missing");
+        }
+
+        let quizText = "";
+
+        try {
+            const genAI = new GoogleGenerativeAI(apiKey);
+            const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
+
+            const prompt = `You are an AI study assistant.
+Generate exactly 3 Multiple Choice Questions (MCQs) based on the following study note to test the student's knowledge.
+Format each question clearly with options A, B, C, D and provide the correct answer in brackets at the end.
+
+Note Title: ${note.title}
+Subject: ${note.subject}
+Note Content:
+${note.content}`;
+
+            const result = await model.generateContent(prompt);
+            quizText = result.response.text();
+            console.log("AI Quiz generated successfully via Gemini API.");
+        } catch (apiError) {
+            console.error("AI Call Failed for Quiz! Logging error:");
+            console.error(apiError);
+
+            // Mock fallback if rate limit hits
+            quizText = `1. What is the primary focus of "${note.title}"?
+A) Nothing
+B) Everything
+C) ${note.subject} concepts
+D) Unknown
+[Answer: C]
+
+2. Which of the following best describes the content?
+A) It contains study notes.
+B) It is a recipe.
+C) It is a novel.
+D) It is an image.
+[Answer: A]
+
+3. The subject of this note is:
+A) ${note.subject}
+B) Math
+C) History
+D) Science
+[Answer: A]`;
+            console.log("Fallback: Generated simulated quiz.");
+        }
+
+        note.quiz = quizText;
+        await note.save();
+
+        res.json(note);
+    } catch (error) {
+        console.error("Fatal Route Error in /quiz:", error);
+        res.status(500).json({ error: "Failed to generate AI quiz." });
+    }
 });
 
 // POST generate AI summary and quiz for a note

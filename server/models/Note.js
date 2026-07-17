@@ -21,6 +21,11 @@ const noteSchema = new mongoose.Schema({
         default: "",
         trim: true
     },
+    quiz: {
+        type: String,
+        default: "",
+        trim: true
+    },
     createdAt: {
         type: Date,
         default: Date.now

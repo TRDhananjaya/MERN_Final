@@ -127,6 +127,25 @@ export default function App() {
     }
   };
 
+  // Update Note Handler
+  const handleUpdateNote = async (id, updatedData) => {
+    try {
+      if (isUsingMock) {
+        const updated = notes.map(n => (n._id || n.id) === id ? { ...n, ...updatedData } : n);
+        setNotes(updated);
+        localStorage.setItem('studymate_notes', JSON.stringify(updated));
+      } else {
+        const response = await API.put(`/notes/${id}`, updatedData);
+        if (response.data) {
+          setNotes(prev => prev.map(n => (n._id || n.id) === id ? response.data : n));
+        }
+      }
+    } catch (err) {
+      console.error("Failed to update note", err);
+      alert("Error updating note on server. Try again.");
+    }
+  };
+
   // AI Summarization Handler (Proactive Hook for Part 3 & 4!)
   const handleSummarizeNote = async (id) => {
     setIsSummarizingMap(prev => ({ ...prev, [id]: true }));
@@ -156,6 +175,37 @@ export default function App() {
       alert("Error calling AI service. Check API logs.");
     } finally {
       setIsSummarizingMap(prev => ({ ...prev, [id]: false }));
+    }
+  };
+
+  // AI Quiz Handler (Bonus)
+  const handleGenerateQuiz = async (id) => {
+    setIsSummarizingMap(prev => ({ ...prev, ['quiz-'+id]: true }));
+    try {
+      if (isUsingMock) {
+        await new Promise(resolve => setTimeout(resolve, 1500));
+        const noteToUpdate = notes.find(n => (n._id || n.id) === id);
+        if (noteToUpdate) {
+          const quizText = `1. What is the subject of this note?\nA) ${noteToUpdate.subject}\nB) Unknown\n[Answer: A]`;
+          const updated = notes.map(n => 
+            (n._id || n.id) === id ? { ...n, quiz: quizText } : n
+          );
+          setNotes(updated);
+          localStorage.setItem('studymate_notes', JSON.stringify(updated));
+        }
+      } else {
+        const response = await API.post(`/notes/${id}/quiz`);
+        if (response.data) {
+          setNotes(prev => prev.map(n => 
+            (n._id || n.id) === id ? { ...n, quiz: response.data.quiz } : n
+          ));
+        }
+      }
+    } catch (err) {
+      console.error("AI Quiz generation failed", err);
+      alert("Error calling AI service for Quiz. Check API logs.");
+    } finally {
+      setIsSummarizingMap(prev => ({ ...prev, ['quiz-'+id]: false }));
     }
   };
 
@@ -269,7 +319,10 @@ export default function App() {
                   note={note} 
                   onDelete={handleDeleteNote}
                   onSummarize={handleSummarizeNote}
+                  onUpdate={handleUpdateNote}
+                  onGenerateQuiz={handleGenerateQuiz}
                   isSummarizing={isSummarizingMap[note._id || note.id]}
+                  isGeneratingQuiz={isSummarizingMap['quiz-'+(note._id || note.id)]}
                 />
               ))}
             </div>
